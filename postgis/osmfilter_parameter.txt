@@ -1,0 +1,2 @@
+--keep-nodes=
+amenity=shop or shop=*
