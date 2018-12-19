@@ -3,8 +3,6 @@ FROM dpage/pgadmin4:latest
 EXPOSE 443
 
 RUN mkdir /certs && \
-    apt-get update && \
-    apt-get install -y openssl && \
     openssl genrsa -des3 -passout pass:x -out /certs/server.pass.key 2048 && \
     openssl rsa -passin pass:x -in server.pass.key -out /certs/server.key && \
     rm /certs/server.pass.key && \
