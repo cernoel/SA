@@ -1,1 +1,1 @@
-docker build . -t pgadmin:simple
+docker build . -t pgadmin4:simple
