@@ -1,8 +1,3 @@
-
-DROP TABLE public.shop;
-
-DROP TABLE public.poi;
-
 CREATE TABLE 
   public.shop(
       id character varying(20)
@@ -28,8 +23,8 @@ CREATE TABLE
     );
 
 -- COPY csv to table
-\copy shop(id, lon, lat, shop, name, city, postcode, street, housenumber, website, email, phone) FROM 'shops.csv' with (format csv,header true,delimiter '|');
+\copy shop(id, lon, lat, shop, name, city, postcode, street, housenumber, website, email, phone) FROM '/tmp/shops.csv' with (format csv,header true,delimiter '|');
 
-\copy poi(id, lat, lon, name) FROM 'graz_poi_complete.csv' with (format csv,header true,delimiter '|');
+\copy poi(id, lat, lon, name) FROM '/tmp/graz_poi_complete.csv' with (format csv,header true,delimiter '|');
 
 
