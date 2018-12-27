@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    count: 0,
+    count: this.props.value,
     tags: ["tag1", "tag2", "tag3"]
   };
 
@@ -26,7 +26,7 @@ class Counter extends Component {
   // We update the this.setState
   // this.state.count++ would not work here
   handelIncrement = product => {
-    this.log(product);
+    console.log(product);
     this.setState({ count: this.state.count + 1 });
   };
 
@@ -45,19 +45,19 @@ class Counter extends Component {
   // we need to give it a ceratain key to specfiy it
   //
   // We tell the Button that if it is clicked it sould do something
+  // {this.renderTags()}
   render() {
     return (
       <div>
+        {this.props.children}
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
-          onClick={() => this.handelIncrement(product)}
+          onClick={() => this.handelIncrement()}
           className="btn btn-secondary btn-sm"
         >
           Increment
         </button>
-
         {this.state.tags.length === 0 && "Pleas create a new tag"}
-        {this.renderTags()}
       </div>
     );
   }
