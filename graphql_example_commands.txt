@@ -1,0 +1,8 @@
+query shops_by_poi($poiname: String = "Murinsel", $distance: Int = 100)
+{
+  poi_shop_distance_data(where: {poiname: {_eq: $poiname} _and: {distance: {_lt: $distance}}})
+  {
+    shopname,
+    distance
+  }
+}
