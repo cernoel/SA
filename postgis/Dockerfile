@@ -18,3 +18,11 @@ RUN rm *.bz2 && rm *.bz2 || rm *.poly && rm *.poly || rm *.csv && rm *.csv || rm
     osmfilter nodes.o5m --drop-author --drop-version --parameter-file=osmfilter_parameter.txt | osmconvert --csv="@id @lon @lat shop name addr:city addr:postcode addr:street addr:housenumber website contact:email phone" --csv-separator="|" --csv-headline -o=shops.csv -
 
 RUN chmod +r /tmp/shops.csv
+
+
+FROM mdillon/postgis:latest
+WORKDIR /tmp
+COPY --from=0 tmp/shops.csv shops.csv
+RUN chmod +r /tmp/shops.csv
+COPY shops_import.sql /docker-entrypoint-initdb.d/shops_import.sql
+
