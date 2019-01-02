@@ -1,8 +1,17 @@
 import React from "react";
 import { Dropdown } from "semantic-ui-react";
-import SearchExampleStandard from "./searchBar";
+import SearchBox from "./searchBar";
+import Slider from "./slider";
 
-var categories = [{ key: "1", value: "1", text: "Einkaufen" }];
+var categories = [
+  { key: "1", value: "1", text: "Einkaufen" },
+  { key: "2", value: "2", text: "Essen" },
+  { key: "3", value: "3", text: "Trinken" },
+  { key: "4", value: "4", text: "Kleidung" },
+  { key: "5", value: "5", text: "Bank" },
+  { key: "6", value: "6", text: "ATM" },
+  { key: "71", value: "7", text: "Other Shit" }
+];
 var pois = [
   { key: "1", value: "1", text: "Puchmuseum" },
   { key: "2", value: "2", text: "Lustbühel" },
@@ -56,8 +65,9 @@ class Filter extends React.Component {
         <DropdownCategorie />
         <h2>Point of Interest</h2>
         <DropdownPoi />
+        <Slider />
         <h1>Search</h1>
-        <SearchExampleStandard />
+        <SearchBox />
         <br />
         <h1 />
         <br />

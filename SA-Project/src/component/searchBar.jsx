@@ -1,27 +1,28 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { Search, Grid, Header, Segment } from "semantic-ui-react";
+import { Search, Grid } from "semantic-ui-react";
 
 var source = [
-  { title: "Billa", description: "This is how we do it" },
-  { title: "Bipa", description: "This is asd we do it" },
-  { title: "Spar", description: "This asd how we do it" },
-  { title: "Shit", description: "This is sad we do it" }
+  { title: "Billa", description: "Gasse 5" },
+  { title: "Bipa", description: "Straße 6" },
+  { title: "Spar", description: "Weg 7" },
+  { title: "Humanic", description: "Berg 8" },
+  { title: "Kastner", description: "Gasse 8" }
 ];
 
-export default class SearchExampleStandard extends Component {
-  componentWillMount() {
-    this.resetComponent();
-  }
-
+class SearchBox extends Component {
   resetComponent = () =>
-    this.setState({ isLoading: false, results: [], value: "" });
+    this.setState({ loading: false, results: [], value: "" });
 
   handleResultSelect = (e, { result }) =>
     this.setState({ value: result.title });
 
+  componentWillMount() {
+    this.resetComponent();
+  }
+
   handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value });
+    this.setState({ loading: true, value });
 
     setTimeout(() => {
       if (this.state.value.length < 1) return this.resetComponent();
@@ -30,22 +31,22 @@ export default class SearchExampleStandard extends Component {
       const isMatch = result => re.test(result.title);
 
       this.setState({
-        isLoading: false,
+        loading: false,
         results: _.filter(source, isMatch)
       });
-    }, 300);
+    }, 400);
   };
 
   render() {
-    const { isLoading, value, results } = this.state;
+    const { loading, value, results } = this.state;
 
     return (
       <Grid>
-        <Grid.Column width={6}>
+        <Grid.Column width={5}>
           <Search
-            loading={isLoading}
+            loading={loading}
             onResultSelect={this.handleResultSelect}
-            onSearchChange={_.debounce(this.handleSearchChange, 500, {
+            onSearchChange={_.debounce(this.handleSearchChange, 400, {
               leading: true
             })}
             results={results}
@@ -57,3 +58,5 @@ export default class SearchExampleStandard extends Component {
     );
   }
 }
+
+export default SearchBox;
