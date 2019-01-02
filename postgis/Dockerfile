@@ -1,9 +1,5 @@
 FROM mdillon/postgis:latest
 
-ENV POSTGRES_DB postgres
-
-EXPOSE 5432
-
 RUN     apt-get update \
     &&  apt-get install -y --no-install-recommends \
         osmosis osmctools osm2pgsql
