@@ -16,7 +16,7 @@ class Map extends React.Component {
   initMap = () => {
     var map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: 47.076668, lng: 15.421371 },
-      zoom: 8
+      zoom: 12
     });
   };
 
@@ -37,10 +37,5 @@ function getScript(url) {
   script.defer = true;
   index.parentNode.insertBefore(script, index);
 }
-
-/*
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
-    async defer></script>
-    */
 
 export default Map;
