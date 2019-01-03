@@ -1,1 +1,1 @@
-docker build . -t postgisandtools:simple
+docker build
