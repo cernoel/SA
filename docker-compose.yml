@@ -1,0 +1,58 @@
+version: '3.5'
+
+services:
+  postgis:
+    container_name: postgis_container
+    build: ./postgis
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: postgres
+    ports:
+      - "5432"
+    networks:
+      - app
+    restart: unless-stopped
+  
+  
+
+
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+       - pgadmin:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - app
+    restart: unless-stopped
+
+  
+
+  
+
+  frontend:
+    container_name: frontend_container
+    build: ./sa-ui
+    ports: 
+      - "3000:3000"
+    depends_on:
+      - postgis
+    environment: 
+      DATABASE_URL: postgis://postgres@postgis/postgres
+    networks:
+      - app
+    restart: unless-stopped
+
+networks:
+  app:
+    driver: bridge
+
+volumes:
+    postgres:
+    pgadmin:
