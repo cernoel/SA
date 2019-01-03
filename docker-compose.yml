@@ -1,15 +1,13 @@
-version: '3.5'
+version: '3.6'
 
 services:
-  postgis:
-    container_name: postgis_container
+  postgres:
+    container_name: postgres
     build: ./postgis
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+#POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
       POSTGRES_DB: postgres
-    ports:
-      - "5432"
     networks:
       - app
     restart: unless-stopped
@@ -42,12 +40,32 @@ services:
     ports: 
       - "3000:3000"
     depends_on:
-      - postgis
+      - postgres
     environment: 
-      DATABASE_URL: postgis://postgres@postgis/postgres
+      DATABASE_URL: postgresql://postgres@postgis/postgres
     networks:
       - app
     restart: unless-stopped
+
+  
+  
+
+
+  graphql-engine:
+    container_name: backend_container
+    image: hasura/graphql-engine:v1.0.0-alpha33
+    ports:
+    - "8080:8080"
+    depends_on:
+    - "postgres"
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:@postgres:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      ## uncomment next line to set an access key
+    networks:
+      - app
+      
 
 networks:
   app:
