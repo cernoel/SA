@@ -1,5 +1,4 @@
 import React from "react";
-import { Form, Input } from "semantic-ui-react";
 
 class Item extends React.Component {
   constructor(props) {
