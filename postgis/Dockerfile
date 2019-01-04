@@ -26,4 +26,3 @@ COPY --from=0 tmp/shops.csv shops.csv
 COPY --from=0 tmp/graz_poi_complete.csv graz_poi_complete.csv
 RUN chmod +r /tmp/shops.csv
 COPY shops_import.sql /docker-entrypoint-initdb.d/shops_import.sql
-

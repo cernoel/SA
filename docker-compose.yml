@@ -1,20 +1,20 @@
 version: '3.6'
 
 services:
-  postgres:
-    container_name: postgres
+  postgis:
+    container_name: postgis_container
     build: ./postgis
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
-#POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+     #POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
       POSTGRES_DB: postgres
     networks:
       - app
     restart: unless-stopped
   
   
-
-
 
   pgadmin:
     container_name: pgadmin_container
@@ -30,9 +30,23 @@ services:
       - app
     restart: unless-stopped
 
-  
 
-  
+  graphql-engine:
+    container_name: backend_container
+    image: graphql:simple
+    #image: hasura/graphql-engine:v1.0.0-alpha34
+    build: ./graphql
+    ports:
+    - "8080:8080"
+    depends_on:
+    - "postgis"
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:@postgis_container:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      ## uncomment next line to set an access key
+    networks:
+      - app 
 
   frontend:
     container_name: frontend_container
@@ -40,31 +54,15 @@ services:
     ports: 
       - "3000:3000"
     depends_on:
-      - postgres
-    environment: 
-      DATABASE_URL: postgresql://postgres@postgis/postgres
+      - graphql-engine
+    #environment: 
+      #DATABASE_URL: postgresql://postgres@postgis_container/postgres
     networks:
       - app
     restart: unless-stopped
 
-  
-  
 
-
-  graphql-engine:
-    container_name: backend_container
-    image: hasura/graphql-engine:v1.0.0-alpha33
-    ports:
-    - "8080:8080"
-    depends_on:
-    - "postgres"
-    restart: always
-    environment:
-      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:@postgres:5432/postgres
-      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
-      ## uncomment next line to set an access key
-    networks:
-      - app
+ 
       
 
 networks:
@@ -72,5 +70,5 @@ networks:
     driver: bridge
 
 volumes:
-    postgres:
+    postgis:
     pgadmin:
