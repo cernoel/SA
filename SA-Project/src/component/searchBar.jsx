@@ -1,6 +1,8 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { Search, Grid } from "semantic-ui-react";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
 var source = [
   { title: "Billa", description: "Gasse 5" },
