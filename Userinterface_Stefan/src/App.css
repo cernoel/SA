@@ -30,22 +30,3 @@
     transform: rotate(360deg);
   }
 }
-
-favorites.name {
-  width: 300px;
-}
-
-body {
-  margin-top: 10px;
-  margin-left: 10px;
-}
-
-select.form-control {
-  width: 70%;
-}
-
-
-.right {
-  width: 200px;
-  padding-right: 125px;
-}
