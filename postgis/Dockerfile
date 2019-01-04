@@ -1,8 +1,8 @@
-FROM mdillon/postgis:latest
+FROM debian:latest
 
 RUN     apt-get update \
     &&  apt-get install -y --no-install-recommends \
-        osmosis osmctools osm2pgsql
+        osmosis osmctools osm2pgsql bzip2
 
 WORKDIR /tmp
 
@@ -23,6 +23,6 @@ RUN chmod +r /tmp/shops.csv
 FROM mdillon/postgis:latest
 WORKDIR /tmp
 COPY --from=0 tmp/shops.csv shops.csv
+COPY --from=0 tmp/graz_poi_complete.csv graz_poi_complete.csv
 RUN chmod +r /tmp/shops.csv
 COPY shops_import.sql /docker-entrypoint-initdb.d/shops_import.sql
-

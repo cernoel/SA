@@ -23,7 +23,7 @@ CREATE TABLE
     );
 
 -- COPY csv to table
-\copy shop(id, lon, lat, shop, name, city, postcode, street, housenumber, website, email, phone) FROM '/tmp/shops.csv' with (format csv,header true,delimiter '|');
+\copy shop(id, lon, lat, shoptype, name, city, postcode, street, housenumber, website, email, phone) FROM '/tmp/shops.csv' with (format csv,header true,delimiter '|');
 
 \copy poi(id, lat, lon, name) FROM '/tmp/graz_poi_complete.csv' with (format csv,header true,delimiter '|');
 
@@ -79,7 +79,7 @@ SELECT
 	shop.lon as lon,
 	shop.lat as lat,
 	shop.name as shopname, 
-	shop.shop as shoptype,
+	shop.shoptype as shoptype,
 	shop.city as city,
 	shop.postcode as postcode,
 	shop.street as street,
