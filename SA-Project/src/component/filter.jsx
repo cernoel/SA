@@ -138,13 +138,6 @@ class Filter extends React.Component {
         sourceTest[i]["street"] +
         " " +
         sourceTest[i]["housenumber"];
-
-      delete sourceTest[i].name;
-      delete sourceTest[i].city;
-      delete sourceTest[i].postcode;
-      delete sourceTest[i].street;
-      delete sourceTest[i].housenumber;
-      delete sourceTest[i].text;
     }
     return sourceTest;
   };
