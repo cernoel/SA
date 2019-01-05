@@ -43,20 +43,23 @@ class SearchBox extends Component {
     const { loading, value, results } = this.state;
 
     return (
-      <Grid>
-        <Grid.Column width={5}>
-          <Search
-            loading={loading}
-            onResultSelect={this.handleResultSelect}
-            onSearchChange={_.debounce(this.handleSearchChange, 400, {
-              leading: true
-            })}
-            results={results}
-            value={value}
-            {...this.props}
-          />
-        </Grid.Column>
-      </Grid>
+      <div class="ui container">
+        <Grid>
+          <Grid.Column width={5}>
+            <Search
+              loading={loading}
+              size="big"
+              onResultSelect={this.handleResultSelect}
+              onSearchChange={_.debounce(this.handleSearchChange, 400, {
+                leading: true
+              })}
+              results={results}
+              value={value}
+              {...this.props}
+            />
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }

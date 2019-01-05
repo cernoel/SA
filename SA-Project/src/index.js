@@ -2,11 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Navbar from "./component/navBar";
 import Map from "./component/map/map-ui";
-import Test from "./component/test";
 
 import ApolloClient from "apollo-boost";
-import gql from "graphql-tag";
-import { render } from "react-dom";
 import { ApolloProvider } from "react-apollo";
 
 const client = new ApolloClient({
