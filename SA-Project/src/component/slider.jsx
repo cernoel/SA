@@ -8,7 +8,7 @@ class Item extends React.Component {
   }
 
   handleChange(event) {
-    console.log(event);
+    console.log(event.target.value);
     this.setState({ value: event.target.value });
   }
 

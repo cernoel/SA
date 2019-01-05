@@ -24,7 +24,7 @@ class AddShop extends React.Component {
     this.setState({ [name]: value });
   };
   sumbitShop = () => {
-    console.log("lets submit this shit");
+    console.log(this.state.name);
   };
 
   render() {

@@ -44,84 +44,95 @@ const DropdownPoi = () => (
 );
 var testsoucre = [];
 
-const DropdownType = () => (
-  <div>
-    <Query
-      query={gql`
-        {
-          shop {
-            id
-            name
-            city
-            street
-            housenumber
-            shoptype
-            postcode
-            website
-            email
-            phone
-            lon
-            lat
-          }
-        }
-      `}
-    >
-      {({ loading, error, data }) => {
-        if (loading) return <Dropdown text="Loading" loading />;
-        if (error) return <p>Error </p>;
-        var i;
-        for (i = 0; i < data.shop.length; i++) {
-          data.shop[i].key = i;
-          data.shop[i].value = i;
-          data.shop[i].text = data.shop[i]["shoptype"];
-          delete data.shop[i].shoptype;
-        }
-
-        testsoucre = data.shop.slice();
-
-        var buffer = {};
-        for (var i = 0, len = data.shop.length; i < len; i++)
-          buffer[data.shop[i]["text"]] = data.shop[i];
-        data.shop = new Array();
-        for (var key in buffer) data.shop.push(buffer[key]);
-
-        var buffer = [];
-        buffer = data.shop.slice();
-
-        return (
-          <div>
-            <Dropdown
-              placeholder="Select a Point of Interest"
-              fluid
-              search
-              selection
-              options={buffer}
-            />
-          </div>
-        );
-      }}
-    </Query>
-  </div>
-);
+const getType = event => {
+  console.log(event.target.value);
+};
 
 var sourceTest = [];
 
 var firsttime = 0;
 
 class Filter extends React.Component {
-  state = {
-    name: "",
-    shoptype: "",
-    city: "",
-    postcode: "",
-    street: "",
-    housenumber: "",
-    lon: "",
-    lat: "",
-    website: "",
-    email: "",
-    phone: ""
-  };
+  constructor(props) {
+    super(props);
+    var state = {
+      value: "",
+      name: "",
+      shoptype: "",
+      city: "",
+      postcode: "",
+      street: "",
+      housenumber: "",
+      lon: "",
+      lat: "",
+      website: "",
+      email: "",
+      phone: ""
+    };
+  }
+
+  DropdownType() {
+    return (
+      <div>
+        <Query
+          query={gql`
+            {
+              shop {
+                id
+                name
+                city
+                street
+                housenumber
+                shoptype
+                postcode
+                website
+                email
+                phone
+                lon
+                lat
+              }
+            }
+          `}
+        >
+          {({ loading, error, data }) => {
+            if (loading) return <Dropdown text="Loading" loading />;
+            if (error) return <p>Error </p>;
+            var i;
+            for (i = 0; i < data.shop.length; i++) {
+              data.shop[i].key = i;
+              data.shop[i].value = i;
+              data.shop[i].text = data.shop[i]["shoptype"];
+              delete data.shop[i].shoptype;
+            }
+
+            testsoucre = data.shop.slice();
+
+            var buffer = {};
+            for (var i = 0, len = data.shop.length; i < len; i++)
+              buffer[data.shop[i]["text"]] = data.shop[i];
+            data.shop = new Array();
+            for (var key in buffer) data.shop.push(buffer[key]);
+
+            var buffer = [];
+            buffer = data.shop.slice();
+
+            return (
+              <div>
+                <Dropdown
+                  placeholder="Select a Point of Interest"
+                  fluid
+                  search
+                  selection
+                  options={buffer}
+                  onChange={getType}
+                />
+              </div>
+            );
+          }}
+        </Query>
+      </div>
+    );
+  }
 
   changeArray = () => {
     var sourceTest = [];
@@ -129,6 +140,7 @@ class Filter extends React.Component {
     var i;
     for (i = 0; i < sourceTest.length; i++) {
       sourceTest[i].title = sourceTest[i]["name"];
+
       sourceTest[i].price = sourceTest[i]["phone"];
       sourceTest[i].description =
         sourceTest[i]["city"] +
@@ -178,7 +190,7 @@ class Filter extends React.Component {
       <div>
         <div />
         <h2>Categorie</h2>
-        <DropdownType />
+        <this.DropdownType />
         <h2>Point of Interest</h2>
         <DropdownPoi />
         <Slider />
@@ -200,6 +212,7 @@ class Filter extends React.Component {
               />
             </Grid.Column>
           </Grid>
+          <p>{this.value}</p>
         </div>
         <div />
         <br />
