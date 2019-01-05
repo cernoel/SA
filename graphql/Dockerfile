@@ -1,4 +1,4 @@
-FROM hasura/graphql-engine:v1.0.0-alpha34.cli-migrations as graphql
+FROM hasura/graphql-engine:v1.0.0-alpha34.cli-migrations as sa_graphql
 
 
 COPY docker-entrypoint.sh /bin/

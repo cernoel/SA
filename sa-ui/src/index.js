@@ -16,7 +16,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 // graphql api url
 const httpLink = createHttpLink({
-  uri: 'http://localhost:8080/v1alpha1/graphql/'
+  uri: 'http://backend_container:8080/v1alpha1/graphql/'
 })
 
 const client = new ApolloClient({
