@@ -9,11 +9,11 @@ class Header extends Component {
         <div className="flex flex-fixed black">
           <div className="fw7 mr1">ShopFinder Graz</div>
           <Link to="/" className="ml1 no-underline black">
-            new
+            Shops
           </Link>
           <div className="ml1">|</div>
-          <Link to="/create" className="ml1 no-underline black">
-            submit
+          <Link to="/poilist" className="ml1 no-underline black">
+            Points of Interests
           </Link>
         </div>
       </div>

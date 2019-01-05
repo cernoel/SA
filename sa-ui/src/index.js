@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.css';
+import 'semantic-ui-css/semantic.min.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 // Apollo imports
@@ -16,7 +16,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 // graphql api url
 const httpLink = createHttpLink({
-  uri: 'http://backend_container:8080/v1alpha1/graphql/'
+  uri: 'http:///localhost:8080/v1alpha1/graphql/'
 })
 
 const client = new ApolloClient({
