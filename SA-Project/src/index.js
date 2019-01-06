@@ -42,7 +42,6 @@ class Mainpage extends React.Component {
               </div>
             </div>
           </div>
-          <body />
         </body>
       </ApolloProvider>
     );

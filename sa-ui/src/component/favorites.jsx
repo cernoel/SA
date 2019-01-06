@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import Favorite from "./favorites_components/Favorites";
 import Buttons from "./favorites_components/Buttons";
 import { Dropdown } from "semantic-ui-react";
@@ -263,6 +264,16 @@ class Favorites extends React.Component {
     );
 
     return <div>{display_favorites_editor}</div>;
+=======
+
+class Favorites extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Hellos Favorites editing</h1>
+      </div>
+    );
+>>>>>>> 87d6811761daa49d88f14deed84b3b8b77a0e586
   }
 }
 export default Favorites;

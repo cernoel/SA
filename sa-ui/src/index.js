@@ -31,11 +31,18 @@ class Mainpage extends React.Component {
           <div>
             <div class="ui internally celled grid">
               <div class="row">
+<<<<<<< HEAD
                 <div class="four wide column">
                   <Navbar />
                 </div>
                 <div class="two wide column" />
                 <div class="eight wide column">
+=======
+                <div class="five wide column">
+                  <Navbar />
+                </div>
+                <div class="ten wide column">
+>>>>>>> 87d6811761daa49d88f14deed84b3b8b77a0e586
                   <h1>Loaction </h1>
                   <Map />
                 </div>
@@ -43,7 +50,10 @@ class Mainpage extends React.Component {
               </div>
             </div>
           </div>
+<<<<<<< HEAD
           <body />
+=======
+>>>>>>> 87d6811761daa49d88f14deed84b3b8b77a0e586
         </body>
       </ApolloProvider>
     );
