@@ -5,12 +5,16 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/
+COPY semantic.json /usr/src/app/semantic.json
 
 RUN npm install
 
 ADD src /usr/src/app/src
 ADD public /usr/src/app/public
 
+RUN npm audit fix
+
 RUN npm build
+
 
 CMD ["npm","start"]
