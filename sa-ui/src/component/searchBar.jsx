@@ -1,8 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { Search, Grid } from "semantic-ui-react";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
 
 var source = [
   { title: "Billa", description: "Gasse 5" },
@@ -43,23 +41,20 @@ class SearchBox extends Component {
     const { loading, value, results } = this.state;
 
     return (
-      <div class="ui container">
-        <Grid>
-          <Grid.Column width={5}>
-            <Search
-              loading={loading}
-              size="big"
-              onResultSelect={this.handleResultSelect}
-              onSearchChange={_.debounce(this.handleSearchChange, 400, {
-                leading: true
-              })}
-              results={results}
-              value={value}
-              {...this.props}
-            />
-          </Grid.Column>
-        </Grid>
-      </div>
+      <Grid>
+        <Grid.Column width={5}>
+          <Search
+            loading={loading}
+            onResultSelect={this.handleResultSelect}
+            onSearchChange={_.debounce(this.handleSearchChange, 400, {
+              leading: true
+            })}
+            results={results}
+            value={value}
+            {...this.props}
+          />
+        </Grid.Column>
+      </Grid>
     );
   }
 }

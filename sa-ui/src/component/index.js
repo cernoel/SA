@@ -9,20 +9,6 @@ import { ApolloProvider } from "react-apollo";
 const client = new ApolloClient({
   uri: "http://localhost:8080/v1alpha1/graphql"
 });
-/*
-client
-  .query({
-    query: gql`
-      {
-        poi {
-          name
-          id
-        }
-      }
-    `
-  })
-  .then(result => console.log(result));
-*/
 class Mainpage extends React.Component {
   render() {
     return (

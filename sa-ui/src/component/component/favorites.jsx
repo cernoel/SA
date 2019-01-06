@@ -232,7 +232,8 @@ class Favorites extends React.Component {
                 distanceChanged={event =>
                   this.FavoriteDistanceChangedHandler(event, favorites.key)
                 }
-                poidChanged={event => this.FavoritePoidChangedHandler(event, favorites.key)}
+                poidChanged={event =>
+                  this.FavoritePoidChangedHandler(event, favorites.key)}
 
 
 

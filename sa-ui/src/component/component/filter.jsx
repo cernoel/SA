@@ -135,6 +135,7 @@ class Filter extends React.Component {
     }
     console.log("fave", this.state.favorites);
   }
+
   resetComponent = () =>
     this.setState({ isLoading: false, results: [], value: "" });
 
