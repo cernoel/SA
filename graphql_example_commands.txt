@@ -6,3 +6,21 @@ query shops_by_poi($poiname: String = "Murinsel", $distance: Int = 100)
     distance
   }
 }
+
+
+mutation insert_shop($name:String, $type:String) {
+  insert_shop(
+    objects: [
+      {
+        name: $name,
+        shoptype:$type
+      }
+    ]
+  ) {
+    returning {
+      id
+      name,
+      shoptype
+    }
+  }
+}
